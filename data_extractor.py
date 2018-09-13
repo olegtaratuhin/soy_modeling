@@ -99,4 +99,7 @@ def random_mask():
 
 
 def get_target_index():
+    """
+    Return target index of a row with predicted parameter
+    """
     return ConstantsTranslator.TIME_SOWBLOS
