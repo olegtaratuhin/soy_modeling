@@ -1,10 +1,8 @@
 # This file sets tensorflow model to be used in analysis
 import tensorflow as tf
 from tensorflow import keras
-from tensorflow.keras import backend as K
 import numpy as np
 from data_extractor import extract
-from sklearn.metrics import r2_score as r2_metric
 
 
 def main():
