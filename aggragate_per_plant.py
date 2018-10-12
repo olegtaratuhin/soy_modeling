@@ -88,8 +88,8 @@ def main():
         counter += 1
 
     print("Compiling together")
-
-    super_frame = pd.concat({i: df for i, df in enumerate(dataframes)})
+    d = {i: df for i, df in enumerate(dataframes)}
+    super_frame = pd.concat(d.values(), axis=0, keys=d.keys())
 
     print("Compiled:")
     print(super_frame)
