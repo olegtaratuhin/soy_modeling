@@ -42,7 +42,7 @@ def create_batch(row, days_frame, transformer):
     date_from, date_to = parse_dates(row)
 
     event_day = (date_to - date_from).days
-    all_samples_duration = 45
+    all_samples_duration = 57
 
     dates_between = [date_from + timedelta(i) for i in range(all_samples_duration + 1)]
     date_to = dates_between[len(dates_between) - 1]
