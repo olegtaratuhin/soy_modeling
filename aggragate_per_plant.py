@@ -55,11 +55,11 @@ def create_batch(row, days_frame, transformer):
     category_val = parse_category_number(row)
     category = [category_val] * len(plants_state)
     plant_name_val = parse_plant_name(row)
-    station = [plant_name_val] * len(plants_state)
+    plant_name = [plant_name_val] * len(plants_state)
 
     batch_dataframe = days_frame.loc[(days_frame.Date >= str(date_from)) & \
                                      (days_frame.Date <= str(date_to)) & \
-                                     (days_frame.Station == station)]
+                                     (days_frame.Station == station_val)]
 
     t_min = batch_dataframe['T_min'].tolist()
     t_max = batch_dataframe['T_max'].tolist()
