@@ -26,6 +26,11 @@ stations_num = {'Kuban': 34927, 'Pushkin': 26063}
 def parse_station(row):
     return stations_num[row[0]]
 
+def parse_category_number(row):
+    return row[2]
+
+def parse_plant_name(row):
+    return row[3]
 
 def generate_subarrays(arr):
     accumulated = list()
@@ -49,11 +54,16 @@ def create_batch(row, days_frame, transformer):
     days = [i for i in range(len(dates_between))]
     plants_state = saturate(days, event_day)
 
-    station = parse_station(row)
+    station_val = parse_station(row)
+    station = [station_val] * len(plants_state)
+    category_val = parse_category_number(row)
+    category = [category_val] * len(plants_state)
+    plant_name_val = parse_plant_name(row)
+    plant_name = [plant_name_val] * len(plants_state)
 
     batch_dataframe = days_frame.loc[(days_frame.Date >= str(date_from)) & \
                                      (days_frame.Date <= str(date_to)) & \
-                                     (days_frame.Station == station)]
+                                     (days_frame.Station == station_val)]
 
     t_min = batch_dataframe['T_min'].tolist()
     t_max = batch_dataframe['T_max'].tolist()
@@ -66,8 +76,11 @@ def create_batch(row, days_frame, transformer):
         list(map(transformer.transform_t_max, generate_subarrays(t_max))),
         list(map(transformer.transform_avg_dlen, generate_subarrays(dlen))),
         [day / day_max for day in days],
+        station,
+        category,
+        plant_name,
         plants_state
-    ]), columns=['t_min', 't_max', 'dlen', 'day', 'state'])
+    ]), columns=['t_min', 't_max', 'dlen', 'day', 'station', 'category', 'name', 'state'])
 
 
 def main():
@@ -98,7 +111,7 @@ def main():
     print("Compiled:")
     print(super_frame)
 
-    super_frame.to_csv('dataset/golden_data_sig.csv')
+    super_frame.to_csv('dataset/golden_data_additional.csv')
 
 
 if __name__ == '__main__':

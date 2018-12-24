@@ -2,6 +2,25 @@
 import numpy as np
 
 
+def sigmoid_linearized(x, scale=1.0, transpose=0.0, left_step=0.2, right_step=0.8):
+    """
+    Calculate sigmoid function between 0 and 1
+    to simulate plant ready state
+
+    formula: 0 for x in (-inf, left_step * scale)
+             x / ((right_step - left_step) * scale) - left_step / (right_step - left_step)
+             1 for x in [right_step * scale, +inf)
+    """
+
+    if (x <= left_step * scale):
+        return 0.0
+    elif (x >= right_step * scale):
+        return 1.0
+    else:
+        inner_step = right_step - left_step
+        return x / (inner_step * scale) - left_step / inner_step
+
+
 def sigmoid_skew(x, scale=1.0, transpose=5.0):
     """
     Calculates sigmoid function between 0 and 1
@@ -41,7 +60,7 @@ def sigmoid_elizondo(x, scale=1.0, transpose=5.0):
 
 def saturate(days, event_day, sigmoid=None):
     """
-    Generates states as smooth s-curve scaled to
+    Generates states as s-curve scaled to
     period of blossoming
     """
     if sigmoid is None:
