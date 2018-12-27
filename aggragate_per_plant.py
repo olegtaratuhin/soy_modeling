@@ -47,7 +47,7 @@ def create_batch(row, days_frame, transformer):
     date_from, date_to = parse_dates(row)
 
     event_day = (date_to - date_from).days
-    all_samples_duration = 57
+    all_samples_duration = 67
 
     dates_between = [date_from + timedelta(i) for i in range(all_samples_duration + 1)]
     date_to = dates_between[len(dates_between) - 1]
@@ -111,7 +111,7 @@ def main():
     print("Compiled:")
     print(super_frame)
 
-    super_frame.to_csv('dataset/golden_data_additional.csv')
+    super_frame.to_csv('dataset/soy_data.csv')
 
 
 if __name__ == '__main__':
