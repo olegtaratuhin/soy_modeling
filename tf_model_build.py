@@ -30,9 +30,9 @@ df_full.head(5)
 
 """Select features and target parameter. As the data is shuffled at this point we no longer need multi-index, and selecting values will truncate that information automatically."""
 
-namnam = pd.unique(df_full['name'])
+list_of_groups = pd.unique(df_full['name'])
 
-for d in pd.unique(df_full['name']):
+for d in list_of_groups:
 #if True:
 #	d = namnam[8]
 	print("using:", d)

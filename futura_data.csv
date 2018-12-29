@@ -1,4 +1,4 @@
-,,t_min,t_max,dlen,day,station,category,name,state
+ID,d,t_min,t_max,dlen,day,station,category,name,state
 0,0,0.0,0.0,0.0,0.0,PUSH,0,Fiskeby 1040-4-2,0.0
 0,1,0.0,0.0,0.07749999999999999,0.014925373134328358,PUSH,0,Fiskeby 1040-4-2,0.014925373134328358
 0,2,0.0,0.0,0.08875,0.029850746268656716,PUSH,0,Fiskeby 1040-4-2,0.029850746268656716

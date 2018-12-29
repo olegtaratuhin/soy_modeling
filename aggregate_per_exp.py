@@ -99,7 +99,7 @@ def create_batch(row, transformer):
         list(map(transformer.transform_avg_dlen, generate_subarrays(dlen))),
         [day / day_max for day in days],
         [station_abr] * len(days),
-        [ID] * len(days),
+        [year] * len(days),
         [acc_nam] * len(days),
         [day / day_max for day in days]
     ]), columns=['t_min', 't_max', 'dlen', 'day', 'station', 'category', 'name', 'state'])
