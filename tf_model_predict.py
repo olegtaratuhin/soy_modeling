@@ -17,29 +17,18 @@ from keras.models import load_model
 
 df_full = pd.read_csv('futura_data.csv')
 
-list_of_groups = pd.unique(df_full['ID'])
-
-print(list_of_groups)
-result = df_full.loc[df_full.groupby('ID')['day'].idxmin()]
-list_of_acc = result['name']
+list_of_acc = pd.unique(df_full['name'])
 print(list_of_acc)
 
-for idp, d in zip(list_of_groups, list_of_acc):
-#if True:
-#    d = list_of_acc[idp]
+for d in list_of_acc:
     print("using:", d)
-    df = df_full.loc[df_full['ID'] == idp]
-    model = load_model('blossum_model_' + d + '.h5')
+	model = load_model('blossum_model_' + d + '.h5')
     print(model.summary())
-
+    df = df_full.loc[df_full['name'] == d]
     features = ['t_min', 't_max', 'dlen', 'day']
     data = df[features].values
     predicted_blossum = model.predict(data)
-    df_predicted = df
-    df_predicted.insert(1, 'new', predicted_blossum)
-    blossum_dates_predicted = df_predicted.loc[df_predicted['new'] >= 0.6]
-    blossum_dates_predicted = blossum_dates_predicted.loc[blossum_dates_predicted.groupby('ID')['new'].idxmin()]
-    result.loc[result['ID'] == idp, 'd'] = blossum_dates_predicted['d'].values
-
-print(result)
-result.to_csv('futura_prediction.csv')
+    df.insert(1, 'new', predicted_blossum)
+	df = df.loc[df['new'] >= 0.6]
+	df = df.loc[df.groupby('ID')['new'].idxmin()]
+    df.to_csv('futura_prediction_' + d + '.csv')
