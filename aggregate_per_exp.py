@@ -21,7 +21,7 @@ def parse_dates(row):
 
     return convert_to_date(date_from), convert_to_date(date_to)
 
-data_indices = {'ID': 0, 'STABR' : 1, 'god' : 2, 'RCP' : 3,	'Name' : 4,	'Data.poseva' : 5}
+data_indices = {'ID': 0, 'STABR' : 1, 'god' : 2, 'RCP' : 3,	'Name' : 4,	'Data.vshodov' : 5}
 
 def parse_station(row):
     return stations_num[row[0]]
@@ -44,7 +44,7 @@ def generate_subarrays(arr):
 
 
 def create_batch(row, transformer):
-    date_from = convert_to_date(row[data_indices['Data.poseva']])
+    date_from = convert_to_date(row[data_indices['Data.vshodov']])
 
     all_samples_duration = 67
 
@@ -55,10 +55,10 @@ def create_batch(row, transformer):
     station_abr = row[data_indices['STABR']]
     ID = row[data_indices['ID']]
     acc_nam = row[data_indices['Name']]
-    year = row[data_indices['god']]
+    year = int(row[data_indices['god']])
     rcp_nam = row[data_indices['RCP']]
 
-    futura_weather_prefix = '/nilmbb/kkozlov/soy-marksim/Prediction_all'
+    futura_weather_prefix = '/nilmbb/kkozlov/soy-ann'
     futura_weather_model = '11111111111111111'
 
     futura_weather_file = futura_weather_prefix + '/' + station_abr + '_' + futura_weather_model + '_' + rcp_nam + '_' + str(year) + '/' + station_abr + '0101.WTG'
