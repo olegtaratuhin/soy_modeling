@@ -1,3 +1,34 @@
 
 .DS_Store
 *.DOC
+blossum_dates_dataset_Altom.csv
+blossum_dates_dataset_Fiskeby 1040-4-2.csv
+blossum_dates_dataset_KG-20.csv
+blossum_dates_dataset_Okskaya.csv
+blossum_dates_dataset_P·EP 18.csv
+blossum_dates_dataset_P·EP 2.csv
+blossum_dates_dataset_P·EP 27.csv
+blossum_dates_dataset_P·EP 28.csv
+blossum_dates_dataset_Svetlaya.csv
+blossum_dates_predicted_Altom.csv
+blossum_dates_predicted_Fiskeby 1040-4-2.csv
+blossum_dates_predicted_KG-20.csv
+blossum_dates_predicted_Okskaya.csv
+blossum_dates_predicted_P·EP 18.csv
+blossum_dates_predicted_P·EP 2.csv
+blossum_dates_predicted_P·EP 27.csv
+blossum_dates_predicted_P·EP 28.csv
+blossum_dates_predicted_Svetlaya.csv
+blossum_model_Altom.h5
+blossum_model_Svetlaya.h5
+blossum_model_Fiskeby 1040-4-2.h5
+blossum_model_KG-20.h5
+blossum_model_Okskaya.h5
+blossum_model_P·EP 18.h5
+blossum_model_P·EP 2.h5
+blossum_model_P·EP 27.h5
+blossum_model_P·EP 28.h5
+.vscode/settings.json
+__pycache__/generate_sigmoid.cpython-36.pyc
+__pycache__/generate_sigmoid.cpython-36.pyc
+__pycache__/generate_sigmoid.cpython-36.pyc
