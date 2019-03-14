@@ -46,9 +46,13 @@ def generate_subarrays(arr):
 def create_batch(row, days_frame, transformer):
     date_from, date_to = parse_dates(row)
 
-    dates_between = [date_from + timedelta(i) for i in range((date_to - date_from).days + 1)]
+    event_day = (date_to - date_from).days
+    all_samples_duration = 67
+
+    dates_between = [date_from + timedelta(i) for i in range(all_samples_duration + 1)]
+    date_to = dates_between[len(dates_between) - 1]
     days = [i for i in range(len(dates_between))]
-    plants_state = saturate(days)
+    plants_state = saturate(days, event_day)
 
     station_val = parse_station(row)
     station = [station_val] * len(plants_state)
@@ -107,7 +111,7 @@ def main():
     print("Compiled:")
     print(super_frame)
 
-    super_frame.to_csv('dataset/golden_data_additional.csv')
+    super_frame.to_csv('dataset/soy_data.csv')
 
 
 if __name__ == '__main__':
