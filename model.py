@@ -55,7 +55,7 @@ def get_model(model_parameters, optimizer='sgd', loss='mse', metrics=['mse', 'ma
     return model
 
 
-def load_model(file_weights, file_model=None):
+def load_model(file_weights, file_model=None, optimizer='sgd', loss='mse', metrics=['mse', 'mae']):
     """
     Load model from given file.
 
@@ -64,6 +64,9 @@ def load_model(file_weights, file_model=None):
             name to load is f"{file}_weights.h5".
         file_model (str): path to load model. Is used if
             model is not saved and can have different naming.
+        optimizer (str): optimizer to use for compilation of model.
+        loss (str): metric to optimize while training.
+        metrics (list): list of metrics to track.
     Returns:
         keras.model loaded from file.
     """
@@ -77,6 +80,10 @@ def load_model(file_weights, file_model=None):
 
     loaded_model = models.model_from_json(loaded_model_json)
     loaded_model.load_weights(f"{file_weights}_weights.h5")
+
+    loaded_model.compile(optimizer=optimizer, loss=loss, metrics=metrics)
+
+    return loaded_model
 
 
 def save_model(model, file, save_model=True):
