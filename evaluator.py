@@ -21,5 +21,16 @@ Todo:
 """
 
 
-def evaluate(model, test_data):
+def evaluate(model, test_data, metrics):
+    """
+    Evaluate given model on test data with given metrics.
+
+    Args:
+        model (keras.Model): model.
+        test_data (pd.DataFrame): test data.
+        metrics (list): metrics to evaluate model with.
+    Returns:
+        metrics shown by model on given test_data in same order as
+            metrics were in argument list.
+    """
     return []
