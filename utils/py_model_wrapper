@@ -1,0 +1,52 @@
+#!/usr/bin/python2
+
+"""Show GPU info"""
+
+from tensorflow.python.client import device_lib
+device_lib.list_local_devices()
+
+"""### Import modules"""
+
+import numpy as np
+import pandas as pd
+from sklearn import metrics
+import random
+
+import tensorflow as tf
+import keras
+from sklearn.metrics import r2_score as r2_metric
+from keras import optimizers
+from keras import backend as K
+
+from scipy.stats.stats import pearsonr
+
+import getopt, sys
+
+try:
+	opts, args = getopt.getopt(sys.argv[1:], "e:ho:v", ["help", "output="])
+except getopt.GetoptError:
+	# print help information and exit:
+	print("Help!")
+	sys.exit(2)
+output = None
+verbose = False
+eps = 1e-1
+for o, a in opts:
+	if o == "-v":
+		verbose = True
+	if o in ("-h", "--help"):
+		print("Help!")
+		sys.exit()
+	if o in ("-o", "--output"):
+		output = a
+	if o == "-e":
+		eps = a
+
+"""Import data set into pandas dataframe. The dataset contains a missing value on one of the key features the model will be training with, so we need to remove that explicitly"""
+
+df_full = pd.read_csv(args[0])
+#df_full.head(5)
+
+error_training = 0.001
+
+print error_training
