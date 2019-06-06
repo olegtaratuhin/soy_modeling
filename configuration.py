@@ -32,5 +32,6 @@ Todo:
 class Configuration(object):
     """Configuration class."""
 
-    def __init__(self, *args, **kwargs):
-        pass
+    def __init__(self, parsed_arguments):
+        self.parsed_arguments = parsed_arguments
+        self.args = dict()

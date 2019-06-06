@@ -26,6 +26,7 @@ Todo:
 
 import argparse
 import textwrap
+from configuration import Configuration
 
 
 class Parser(object):
@@ -94,10 +95,14 @@ class Parser(object):
             All sky - collective radiation; \
             Clear sky - radiation of clear sky; \
             """))
+        self.parsed_arguments = None
 
     def parse_args(self, *args):
         self.parsed_arguments = self.parser.parse_args()
         return self.parsed_arguments
 
     def get_configuration(self):
-        pass
+        if self.parsed_arguments is None:
+            self.parse_args()
+        self.configuration = Configuration(self.parsed_arguments)
+        return self.configuration
