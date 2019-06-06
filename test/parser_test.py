@@ -51,7 +51,7 @@ authored by SPbSTU IAMM compbio lab"""
 
     def test_basic(self):
         parser = Parser()
-        command = '--mode fit --target protein --labels-data dataset/dates_dataset_raw.csv --meteo-data dataset/database/kuban'
+        command = '--mode fit --target protein --labels-data dataset/dates_dataset_raw.csv --meteo-data dataset/database/kuban'.split(' ')
         expected = argparse.Namespace(labels_data=['dataset/dates_dataset_raw.csv'], meteo_data=[
                              'dataset/database/kuban'], mode=['fit'], target=['protein'])
         actual = parser.parse_args(command)
