@@ -13,8 +13,18 @@ Todo:
 
 from parser import Parser
 from logger import LoggerDispatcher
+from preprocessor import enrich
 import time
 import datetime
+
+MODE_FIT = "fit"
+MODE_PREDICT = "predict"
+
+TARGET_CROP = "crop"
+TARGET_BLOOM = "bloom"
+TARGET_PROTEIN = "protein"
+TARGET_OIL = "oil"
+
 
 
 if __name__ == "__main__":
@@ -26,3 +36,16 @@ if __name__ == "__main__":
 
     logger = dispatcher.get_logger(__file__)
     logger.info(msg="Parsed arguments: " + str(parsed_args))
+
+    mode = parsed_args.mode
+    targets = parsed_args.target
+    labels_data = parsed_args.labels_data
+    meteo_data = parsed_args.meteo_data
+
+    if mode == MODE_FIT:
+
+        pass
+    else:
+        pass
+
+

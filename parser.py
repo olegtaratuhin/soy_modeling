@@ -95,6 +95,65 @@ class Parser(object):
             All sky - collective radiation; \
             Clear sky - radiation of clear sky; \
             """))
+
+        self.parser.add_argument('--min-temp-params',
+                                 nargs=2,
+                                 type=float,
+                                 help="""For fit mode only.
+                                  C_min_t (barrier) and mu_min_t (normalization) parameters for function""")
+
+        self.parser.add_argument('--max-temp-params',
+                                 nargs=2,
+                                 type=float,
+                                 help="""For fit mode only.
+                                 C_max_t (barrier) and mu_max_t (normalization) parameters for function""")
+
+        self.parser.add_argument('--rain-params',
+                                 nargs=2,
+                                 type=float,
+                                 help="""For fit mode only.
+                                 C_rain (barrier) and mu_rain (normalization) parameters for function""")
+
+        self.parser.add_argument('--all-sky-rad-params',
+                                 nargs=2,
+                                 type=float,
+                                 help="""For fit mode only.
+                                 C_allsky_rad (barrier) and mu_allsky_rad (normalization)""")
+
+        self.parser.add_argument('--clear-sky-rad-params',
+                                 nargs=2,
+                                 type=float,
+                                 help="""For fit mode only.
+                                 C_clearsky_rad (barrier) and mu_clearsky_rad (normalization)""")
+
+        self.parser.add_argument('--photoperiod-params',
+                                 nargs=2,
+                                 type=float,
+                                 help="""For fit mode only.
+                                 C_photoperiod (barrier) and mu_photoperiod (normalization)""")
+
+        self.parser.add_argument('--day-count-params',
+                                 nargs=1,
+                                 type=float,
+                                 help="For fit mode only. Day count normalization value")
+
+        # self.parser.add_argument('--nn-architecture',
+        #                          nargs='+',
+        #                          help="""For fit mode only.
+        #                          Set specified neural network architecture.
+        #                          Should be in specified format: List
+        #                          """)
+
+
+        self.parser.add_argument('--use-model',
+                                 nargs=1,
+                                 help="For predict mode only. Use specified model in path")
+
+        self.parser.add_argument('--use-model-weights',
+                                 nargs=1,
+                                 help="For predict mode only. Use specified weights, model must be provided")
+
+
         self.parsed_arguments = None
 
     def parse_args(self, *args):
