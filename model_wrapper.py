@@ -17,16 +17,16 @@ import tensorflow as tf
 def train_on_dataset(data, target):
     model = keras.Sequential()
     model.add(keras.layers.Dense(
-        20, input_dim=data.shape[1], activation=tf.nn.sigmoid))
+        20, input_dim=data.shape[1], activation=keras.activations.sigmoid))
     model.add(keras.layers.Dropout(0.5))
     model.add(keras.layers.Dense(5, activation='sigmoid'))
     model.add(keras.layers.Dense(1, activation='sigmoid'))
 
-    sgd = optimizers.SGD(lr=0.035)
+    sgd = keras.optimizers.SGD(lr=0.035)
 
-    model.compile(loss='mse',
+    model.compile(loss=keras.metrics.MSE,
                   optimizer=sgd,
-                  metrics=['mse', 'mae'])
+                  metrics=[keras.metrics.MSE, keras.metrics.MAE])
 
     model.fit(data, target, epochs=200, batch_size=30,
               validation_split=0.2, verbose=0)
@@ -38,7 +38,7 @@ def evaluate(data, result):
     expected_ends = data.loc[np.logical_and(
         data['state'] > 0.59, data['state'] < 0.61)]
     actual_ends = result.loc[np.logical_and(
-        expected['state'] > 0.59, expected['state'] < 0.61)]
+        result['state'] > 0.59, result['state'] < 0.61)]
 
     pass
 
